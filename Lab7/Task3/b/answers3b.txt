@@ -1,0 +1,5 @@
+the first two commands are :
+    1. push ebp 
+    2. mov esp ,ebp
+
+run "objdump -d abc" -d for dis-assemble.

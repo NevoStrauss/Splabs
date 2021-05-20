@@ -1,0 +1,22 @@
+1) The entry point specified in the ELF Header, 
+    at the entry point address 0x80482e0 see "readelf -a a.out"
+
+2) There are 33 sections, see "readelf -S a.out"
+
+3) The size of .text section is 0001b8, see "readelf -t text a.out"
+
+4) Yes. and its mapped to in virtual memory in address:
+    57: 080482e0     0 FUNC    GLOBAL DEFAULT   12 _start,
+    where 57 is the index, and 080482e0 is the address
+    see "readelf -a a.out | grep _start"
+
+5) Yes. and its mapped to in virtual memory in address:
+    60: 08048388    51 FUNC    GLOBAL DEFAULT   12 main
+    where 60 is the index, and 08048388 is the address
+    see "readelf -a a.out | grep main"
+
+6) main in file address = virtAdd(main)-virtAdd(.text) + offset(.text) = 
+                             08048388  - 080482e0      +  0002e0 = 388
+    see values in section Headers
+    
+
