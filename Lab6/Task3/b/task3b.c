@@ -312,7 +312,6 @@ char* extractCommand(int index){
     int i=0;
     historyNode *curr = *history;
     while(curr!=NULL){
-        printf("%d %s\n",i,curr->data);
         if(i==index)
             return curr->data;
         i++;
@@ -367,9 +366,9 @@ int main(int argc, char** argv){
             int index = atoi(cmdLine->arguments[0]+1);
             printf("%d",index);
             char* cmd = extractCommand(index);
-            //removeLast();
             if(!strncmp(cmd,"$",1)==0){
                 addToHistory(cmd);
+                freeCmdLines(cmdLine);
                 cmdLine = parseCmdLines(cmd);
             }
             else 
@@ -377,6 +376,7 @@ int main(int argc, char** argv){
         }
 
         if(strncmp(cmdLine->arguments[0],"quit",4)==0){
+            freeCmdLines(cmdLine);
             freeHistory();
             break;
         }
@@ -397,6 +397,7 @@ int main(int argc, char** argv){
 
             else if(strncmp(cmdLine->arguments[0],"history",7)==0){
                 printHistory();
+                freeCmdLines(cmdLine);
             }
 
             else{
